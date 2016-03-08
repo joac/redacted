@@ -6,6 +6,8 @@ REDACTED_STR = "<REDACTED>"
 class Redacted(object):
     """Encapsulates binary sensitive data"""
 
+    def __init__(self, secret):
+        pass
 
     def __repr__(self):
         return REDACTED_STR
