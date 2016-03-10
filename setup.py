@@ -1,5 +1,26 @@
 #! -*- coding: utf8 -*-
+from __future__ import print_function
+
 from distutils.core import setup
+from distutils.extension import Extension
+
+USE_CYTHON = False
+
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    print("Cython not available, using pregenerated C files")  # noqa
+else:
+    USE_CYTHON = True
+
+ext = 'pyx' if USE_CYTHON else 'c'
+
+extensions = [
+    Extension("*", ["**/*.{}".format(ext)]),
+]
+
+if USE_CYTHON:
+    extensions = cythonize(extensions)
 
 setup(
     name='redacted',
@@ -10,7 +31,7 @@ setup(
     url='https://github.com/joac/redacted',
     packages=['redacted'],
     license='LICENSE.md',
-    classifiers = [
+    classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: Spanish',
@@ -20,4 +41,5 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities'
     ],
+    ext_modules=extensions,
 )

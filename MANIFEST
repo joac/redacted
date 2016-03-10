@@ -2,3 +2,5 @@
 README.rst
 setup.py
 redacted/__init__.py
+redacted/_redacted.c
+redacted/_redacted.pyx

@@ -1,3 +1,5 @@
 include README.rst
 include LICENSE.md
 recursive-include redacted *.py
+recursive-include redacted *.pyx
+recursive-include redacted *.c
